@@ -1,29 +1,27 @@
-ResNet training in Torch
+3D Densenet in torch 
 ============================
 
-This implements training of residual networks from [Deep Residual Learning for Image Recognition](http://arxiv.org/abs/1512.03385) by Kaiming He, et. al.
+This implements is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.torch/).
 
 [We wrote a more verbose blog post discussing this code, and ResNets in general here.](http://torch.ch/blog/2016/02/04/resnets.html)
 
 
 ## Requirements
-See the [installation instructions](INSTALL.md) for a step-by-step guide.
-- Install [Torch](http://torch.ch/docs/getting-started.html) on a machine with CUDA GPU
+See the [installation instructions](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md) for a step-by-step guide.
 - luarock install hdf5 nninit
-- Install [cuDNN v4 or v5](https://developer.nvidia.com/cudnn) and the Torch [cuDNN bindings](https://github.com/soumith/cudnn.torch/tree/R4)
-- Download the [ImageNet](http://image-net.org/download-images) dataset and [move validation images](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md#download-the-imagenet-dataset) to labeled subfolders
+- Download the [ModelNet40](http://3dshapenets.cs.princeton.edu/) dataset and [torch7 formated, will publish later]()
 
-If you already have Torch installed, update `nn`, `cunn`, and `cudnn`.
 
 ## Training
-See the [training recipes](TRAINING.md) for addition examples.
+See the [training recipes](https://github.com/facebook/fb.resnet.torch/blob/master/TRAINING.md) for addition examples.
 
-The training scripts come with several options, which can be listed with the `--help` flag.
+For Modelnet40, just run shell `examples/run_modelnet40.sh 0,1`, `0,1` is the GPU ids with multi-GPU supported. 
 ```bash
-th main.lua --help
+cd examples
+./run_modelnet40.sh 0,1
 ```
 
-Re-generate dataset
+
 ```bash
 rm gen/emdb.t7;./runemdb.sh
 ```
@@ -40,29 +38,20 @@ th main.lua -depth 50 -batchSize 256 -nGPU 4 -nThreads 8 -shareGradInput true -d
 
 ## Trained models
 
-Trained ResNet 18, 34, 50, 101, 152, and 200 models are [available for download](pretrained). We include instructions for [using a custom dataset](pretrained/README.md#fine-tuning-on-a-custom-dataset), [classifying an image and getting the model's top5 predictions](pretrained/README.md#classification), and for [extracting image features](pretrained/README.md#extracting-image-features) using a pre-trained model.
 
-The trained models achieve better error rates than the [original ResNet models](https://github.com/KaimingHe/deep-residual-networks).
+#### modelnet40_60x validation error rate
 
-#### Single-crop (224x224) validation error rate
-
-| Network       | Top-1 error | Top-5 error |
-| ------------- | ----------- | ----------- |
-| ResNet-18     | 30.43       | 10.76       |
-| ResNet-34     | 26.73       | 8.74        |
-| ResNet-50     | 24.01       | 7.02        |
-| ResNet-101    | 22.44       | 6.21        |
-| ResNet-152    | 22.16       | 6.16        |
-| ResNet-200    | 21.66       | 5.79        |
-
+| Network        | Top-1 error | Top-5 error |
+| -------------- | ----------- | ----------- |
+| Voxnet         | 13.74       | 1.92        |
+| DenseNet-20-12 | 12.99       | 2.03        |
+| DenseNet-30-12 | 12.11       | 1.94        |
+| DenseNet-30-16 | 11.08       | 1.61        |
+| DenseNet-40-12 | 11.57       | 1.78        |
 ## Notes
 
 This implementation differs from the ResNet paper in a few ways:
 
-**Scale augmentation**: We use the [scale and aspect ratio augmentation](datasets/transforms.lua#L130) from [Going Deeper with Convolutions](http://arxiv.org/abs/1409.4842), instead of [scale augmentation](datasets/transforms.lua#L113) used in the ResNet paper. We find this gives a better validation error.
+**3D Convolution**: We use the [VolumetricConvolution](https://github.com/torch/nn/blob/master/doc/convolution.md) to implement 3D Convolution.
 
-**Color augmentation**: We use the photometric distortions from [Andrew Howard](http://arxiv.org/abs/1312.5402) in addition to the [AlexNet](http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf)-style color augmentation used in the ResNet paper.
 
-**Weight decay**: We apply weight decay to all weights and biases instead of just the weights of the convolution layers.
-
-**Strided convolution**: When using the bottleneck architecture, we use stride 2 in the 3x3 convolution, instead of the first 1x1 convolution.
