@@ -19,19 +19,6 @@ cd examples
 ```
 
 
-```bash
-rm gen/emdb.t7;./runemdb.sh
-```
-
-To run the training, simply run main.lua. By default, the script runs ResNet-34 on ImageNet with 1 GPU and 2 data-loader threads.
-```bash
-th main.lua -data [imagenet-folder with train and val folders]
-```
-
-To train ResNet-50 on 4 GPUs:
-```bash
-th main.lua -depth 50 -batchSize 256 -nGPU 4 -nThreads 8 -shareGradInput true -data [imagenet-folder]
-```
 
 ## Trained models
 
