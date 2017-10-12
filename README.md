@@ -3,9 +3,6 @@
 
 This implements is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.torch/).
 
-[We wrote a more verbose blog post discussing this code, and ResNets in general here.](http://torch.ch/blog/2016/02/04/resnets.html)
-
-
 ## Requirements
 See the [installation instructions](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md) for a step-by-step guide.
 - luarock install hdf5 nninit
