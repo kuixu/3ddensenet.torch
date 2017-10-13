@@ -6,8 +6,12 @@ This implements is based on [fb.resnet.torch](https://github.com/facebook/fb.res
 ## Requirements
 See the [installation instructions](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md) for a step-by-step guide.
 - luarock install hdf5 nninit
-- Download the [ModelNet40](http://3dshapenets.cs.princeton.edu/) dataset and [torch7 formated, will publish later]()
+- Download the [ModelNet40](http://3dshapenets.cs.princeton.edu/) dataset and [hdf5 formate](https://pan.baidu.com/s/1hsN81qG)
 
+## Dataset
+ 1. Download data through above link;
+ 2. and modify the file path in `train.list` and `test.list` file;
+ 3. then modify the `datadir` variable in `examples/run_modelnet40.sh`.
 
 ## Training
 See the [training recipes](https://github.com/facebook/fb.resnet.torch/blob/master/TRAINING.md) for addition examples.
