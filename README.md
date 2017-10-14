@@ -1,4 +1,4 @@
-3D Densenet in torch 
+3D DenseNet in torch 
 ============================
 
 This implements is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.torch/).
