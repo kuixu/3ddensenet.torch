@@ -6,7 +6,7 @@
 ## Requirements
 See the [installation instructions](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md) for a step-by-step guide.
 - luarock install hdf5 nninit
-- Download the [ModelNet40](http://3dshapenets.cs.princeton.edu/) dataset and hdf5 format ([Google Drive](https://drive.google.com/file/d/0B1S5mVkJgRwqRUZjakNuMi1yck0/view?usp=sharing), [Baidu](https://pan.baidu.com/s/1hsN81qG))
+- Download the [ModelNet40](http://3dshapenets.cs.princeton.edu/) dataset and hdf5 format ([Google Drive](https://drive.google.com/file/d/0B1S5mVkJgRwqRUZjakNuMi1yck0/view?usp=sharing), [Baidu Cloud Disk](https://pan.baidu.com/s/1hsN81qG))
 
 ## Dataset
  1. Download data through above link;
