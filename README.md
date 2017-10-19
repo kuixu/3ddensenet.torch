@@ -1,7 +1,7 @@
 3D DenseNet in torch 
 ============================
 
-This implements is based on [fb.resnet.torch](https://github.com/facebook/fb.resnet.torch/).
+3D DenseNet is using 3D Convolutional(VolumetricConvolution in torch), Pooling, BatchNormalization layers with 3D kernel. This implements is based on [DenseNet](https://github.com/liuzhuang13/DenseNet) and [fb.resnet.torch](https://github.com/facebook/fb.resnet.torch/). DenseNet introduced in the paper "Densely Connected Convolutional Networks" (CVPR 2017, Best Paper Award)
 
 ## Requirements
 See the [installation instructions](https://github.com/facebook/fb.resnet.torch/blob/master/INSTALL.md) for a step-by-step guide.
@@ -19,7 +19,7 @@ See the [training recipes](https://github.com/facebook/fb.resnet.torch/blob/mast
 For Modelnet40, just run shell `examples/run_modelnet40.sh 0,1`, `0,1` is the GPU ids with multi-GPU supported. 
 ```bash
 cd examples
-./run_modelnet40.sh 0,1
+./run_modelnet40_h5.sh 0,1
 ```
 
 
